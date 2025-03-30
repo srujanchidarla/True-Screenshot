@@ -1,0 +1,65 @@
+{
+  "name": "vscode-truescreenshot",
+  "displayName": "TrueScreenshot",
+  "description": "Capture true screenshots of your code with all editor features preserved",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.captureScreenshot"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.captureScreenshot",
+        "title": "Capture True Screenshot"
+      }
+    ],
+    "configuration": {
+      "title": "TrueScreenshot",
+      "properties": {
+        "truescreenshot.quality": {
+          "type": "number",
+          "default": 90,
+          "description": "Quality of the screenshot (1-100)"
+        },
+        "truescreenshot.format": {
+          "type": "string",
+          "enum": [
+            "png",
+            "jpeg"
+          ],
+          "default": "png",
+          "description": "Format of the screenshot"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.captureScreenshot",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run lint",
+    "lint": "eslint .",
+    "test": "node ./test/runTest.js"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/node": "^16.11.7",
+    "@types/fs-extra": "^9.0.13",
+    "eslint": "^8.7.0"
+  }
+}
